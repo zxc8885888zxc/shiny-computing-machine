@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#f3edfb">
+  <meta name="description" content="台灣大樂透、威力彩、今彩539近兩年開獎資料與統計模擬">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icon.svg">
+  <link rel="icon" href="icon.svg">
+  <link rel="stylesheet" href="styles.css">
+  <title>樂透彩預測</title>
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <h1>樂透彩預測</h1>
+    </div>
+    <button id="syncBtn" class="sync" type="button" aria-label="更新官方開獎號碼">
+      <span aria-hidden="true">↻</span><span>更新號碼</span>
+    </button>
+  </header>
+
+  <main>
+    <nav class="game-tabs" aria-label="選擇彩券">
+      <button class="game-tab active" data-game="lotto649">大樂透</button>
+      <button class="game-tab" data-game="superlotto638">威力彩</button>
+      <button class="game-tab" data-game="daily539">今彩539</button>
+    </nav>
+
+    <section class="latest-panel" aria-labelledby="latestTitle">
+      <div class="latest-meta">
+        <div>
+          <span class="status-dot"></span><span id="sourceLabel">官方資料</span>
+          <h2 id="latestTitle">最新開獎</h2>
+          <p id="latestInfo" class="muted">讀取中…</p>
+        </div>
+        <div class="freshness">
+          <span>資料範圍</span>
+          <strong id="rangeLabel">近 2 年</strong>
+        </div>
+      </div>
+      <div id="latestBalls" class="balls" aria-live="polite"></div>
+    </section>
+
+    <section class="predict-card" aria-labelledby="predictTitle">
+      <div class="section-head">
+        <div>
+          <p class="kicker">下一期模擬</p>
+          <h2 id="predictTitle">選一種分析方法</h2>
+        </div>
+        <button id="predictBtn" class="primary" type="button">分析 5 組</button>
+      </div>
+
+      <div id="methods" class="method-scroll" role="radiogroup" aria-label="預測方式">
+        <button class="method active" data-method="ensemble" role="radio" aria-checked="true"><b>綜合評分</b><small>多指標加權</small></button>
+        <button class="method" data-method="hot" role="radio" aria-checked="false"><b>熱門號碼</b><small>近期高頻</small></button>
+        <button class="method" data-method="overdue" role="radio" aria-checked="false"><b>遺漏回補</b><small>久未出現</small></button>
+        <button class="method" data-method="trend" role="radio" aria-checked="false"><b>短期趨勢</b><small>最近 30 期</small></button>
+        <button class="method" data-method="balanced" role="radio" aria-checked="false"><b>均衡分布</b><small>奇偶與區間</small></button>
+        <button class="method" data-method="cold" role="radio" aria-checked="false"><b>冷門反向</b><small>低頻組合</small></button>
+        <button class="method" data-method="carry" role="radio" aria-checked="false"><b>號碼帶出分析</b><small>前期 → 下一期</small></button>
+        <button class="method" data-method="all7" role="radio" aria-checked="false"><b>七法連貫</b><small>7 種合併</small></button>
+      </div>
+
+      <div class="prediction-stage">
+        <p id="methodDesc" class="muted">綜合近期頻率、遺漏期數與號碼分布。</p>
+        <div id="predictionBalls" class="prediction" aria-live="polite"></div>
+        <div class="prediction-foot">
+          <span id="predictionStamp">尚未產生</span>
+        </div>
+      </div>
+
+      <div class="notice">
+        <span aria-hidden="true">!</span>
+        <p><strong>統計不等於預知。</strong>每一期皆為獨立隨機事件，任何方法都無法保證中獎；本頁僅供資料分析與娛樂。</p>
+      </div>
+    </section>
+
+    <section class="history-card" aria-labelledby="historyTitle">
+      <div class="section-head history-head">
+        <div>
+          <p class="kicker">過去 2 年</p>
+          <h2 id="historyTitle">歷史開獎號碼</h2>
+        </div>
+      </div>
+      <div id="historyList" class="history-list"></div>
+      <button id="moreBtn" class="secondary" type="button">顯示更多</button>
+    </section>
+
+    <footer>
+      <p>連網開啟或返回本頁時自動檢查官方號碼；頁面開啟期間每 5 分鐘檢查一次。關閉網站後不會背景更新。實際號碼以官方公告為準。</p>
+      <p>未滿 18 歲不得購買或兌領彩券，請量力而為。</p>
+      <p><strong>免責聲明：</strong>本網站僅使用公開之台灣彩券歷史開獎資料進行統計與機率分析，所產生之號碼僅供參考。本網站不提供或接受下注、不收取賭金、不代為簽注、不撮合賭博，亦不經營任何地下彩券或簽賭活動。彩券開獎具有隨機性，分析結果不代表或保證中獎。</p>
+    </footer>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="app.js" defer></script>
+</body>
+</html>
