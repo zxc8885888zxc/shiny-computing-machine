@@ -1,0 +1,9 @@
+{
+  "name":"樂透彩預測",
+  "short_name":"樂透彩預測",
+  "start_url":"./",
+  "display":"standalone",
+  "background_color":"#f3edfb",
+  "theme_color":"#f3edfb",
+  "icons":[{"src":"icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
+}
